@@ -44,7 +44,8 @@
 
 				<!-- Header -->
 					<header id="header" class="alt">
-                        <span class="logo"><img src="https://vinylgif.com/gifs/201412/spinning-7-inch.gif" alt="titlelogo" width="500" /></span>
+{#                        <span class="logo"><img src="https://vinylgif.com/gifs/201412/spinning-7-inch.gif" alt="titlelogo" width="500" /></span>#}
+                        <span class="logo"><img src="https://media2.giphy.com/media/LwBTamVefKJxmYwDba/giphy.gif" alt="titlelogo" width="500" /></span>
 						<h1 class="jg" style = "font-size:6em;">이 노래를 불러줘</h1>
 						<p class="jg" style = "font-size:1.7em;">취향 저격 가수의 목소리로 바꿔주는 음악 변환 서비스<br />
 						</p>
@@ -71,10 +72,9 @@
 											<h2>더 이상 들을게 없다고? </br>직접 만들어 듣자!</h2>
 										</header>
                                         <h5>가수를 선택하고,음악을 올려보세요.</br>해당 가수가 불러주는 색다른 음악을 접할수 있어요.</br>글을 입력해서 가수가 읽어주는 글을 들을 수도 있어요.</h5>
-
 										<ul class="actions">
-											<li><a href="#first" class="button active" style="transition: font-size 0.2s ease;">가수 목소리를 선택</a></li>
-											<li><a href="#second" class="button active">글자를 음성으로 변환</a></li>
+											<li><a href="#first" class="button active" id="smooth-hover-first" >가수 목소리를 선택</a></li>
+											<li><a href="#second" class="button active" id="smooth-hover-second">글자를 음성으로 변환</a></li>
                                         </ul>
 									</div>
 									<span class="image"><img src="static/images/violet-background.jpg" alt="" /></span>
@@ -199,6 +199,23 @@
 		<!-- Scripts -->
 
 			<script src="static/js/jquery.min.js"></script>
+        <script>
+
+            $(document).ready(function(){
+                $('#smooth-hover-first').click(function(){
+                    var offset = $('#first').offset(); //선택한 태그의 위치를 반환
+                        //animate()메서드를 이용해서 선택한 태그의 스크롤 위치를 지정해서 0.4초 동안 부드럽게 해당 위치로 이동함
+                    $('html').animate({scrollTop : offset.top}, 800);
+                });
+                $('#smooth-hover-second').click(function(){
+                    var offset = $('#second').offset(); //선택한 태그의 위치를 반환
+                        //animate()메서드를 이용해서 선택한 태그의 스크롤 위치를 지정해서 0.4초 동안 부드럽게 해당 위치로 이동함
+                    $('html').animate({scrollTop : offset.top}, 1100);
+                });
+            });
+
+        </script>
+
 			<script src="static/js/jquery.scrollex.min.js"></script>
 			<script src="static/js/jquery.scrolly.min.js"></script>
 			<script src="static/js/browser.min.js"></script>
