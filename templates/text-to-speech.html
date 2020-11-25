@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<!--
+	Stellar by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+{% include 'head.html' %}
+<body class="is-preload">
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+    <!-- Header -->
+    <header id="header">
+        <h1 class="jg" style = "font-size:2em;">음성 합성</h1>
+        <p class="jg" style = "font-size:1em;">텍스트를 가수의 음성으로 변환합니다.</p>
+    </header>
+
+    <!-- Main -->
+    <div id="main">
+        <!-- Content -->
+        <section id="content" class="main">
+            <span class="image main"></span>
+            <div class="spotlight">
+                <div class="content">
+                    <header class="major jg">
+                        <h2 class="jg">Text -> IU</h2>
+                        {#                        get에서 넘어온 변수에 따라 다르게 하기#}
+                    </header>
+                    <h5 class="jg">텍스트 입력 후 합성버튼을 눌러주세요</h5>
+
+                    <div class="form-group">
+                        <textarea id="textarea" class="jg form-control rounded-0"  rows="5" placeholder="음성합성할 텍스트를 입력해주세요" onkeyUp="keyup()"></textarea>
+                        <div style="padding: 20px 0; font-size:.7em;">
+                            <p style="display:inline" id="length-checker">300</p>
+                            <h7 style="">자 남음 (최대 300자)</h7>
+                        </div>
+                        <a href="#first" class="jg button primary active center fit" id="smooth-hover-first" >음성 합성</a>
+                    </div>
+
+                </div>
+                <span class="image"><img src="static/images/iu2.jpg" alt="" /></span>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    {% include 'footer.html' %}
+</div>
+
+<!-- Scripts -->
+<script src="static/js/jquery.min.js"></script>
+<script>
+    // 입력한 문자
+    var str;
+    var length
+    var str_length_limit = 300
+    str = document.getElementById("textarea").value; // textarea에서의 string을 받는다.
+    function keyup() // keyup함수
+    {
+        str = document.getElementById("textarea").value;
+        if(str.length > 300) // 문자열의 길이가 80이 넘어갈 경우
+        {
+            //alert("overflow!!!"); // 초과 alert창을 띄운다
+            max_text = str.substring(0,300);
+            cleartext(max_text); // 초기화시킨다
+        }
+        else // 그렇지 않을경우 leng(문자열 남은 길이)는 300에서 문자열의 길이를 뺸 것을 계산한다.
+        {
+            document.getElementById("length-checker").innerText = str_length_limit - document.getElementById("textarea").value.length;
+        }
+
+    }
+    function cleartext(max_string) // 초기화(텍스트 내용과 남은 길이값을 초기화)
+    {
+        document.getElementById("textarea").value = max_string;
+        document.getElementById("length-checker").innerText = "0";
+    }
+</script>
+<script src="static/js/jquery.scrollex.min.js"></script>
+<script src="static/js/jquery.scrolly.min.js"></script>
+<script src="static/js/browser.min.js"></script>
+<script src="static/js/breakpoints.min.js"></script>
+<script src="static/js/util.js"></script>
+<script src="static/js/main.js"></script>
+
+</body>
+</html>
