@@ -22,10 +22,11 @@ def tts():
         singer = request.args.get('singer','iu')
         return render_template('text-to-speech.html',singer=singer)
 @app.route('/create',methods = ['POST'])
-def gettext():
+def gettext(display=None):
     if request.method == 'POST':
         text = request.form['tts-text']
-        return text
+        # query
+        return render_template("done.html", display=text)
 
 # @app.route('/tts', methods=['POST'])
 # def my_form_post():

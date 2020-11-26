@@ -26,19 +26,12 @@
             <div class="spotlight">
                 <div class="content">
                     <header class="major jg">
-                        <h2 class="jg">Text -> IU</h2>
+                        <h2 class="jg">결과창</h2>
                         {#                        get에서 넘어온 변수에 따라 다르게 하기#}
+{#                        output = request.form.get('display')#}
                     </header>
-                    <h5 class="jg">텍스트 입력 후 합성버튼을 눌러주세요</h5>
+                    <h5 class="jg">{{display}}</h5>
 
-                    <form action="/create" class="form-group" method="POST">
-                        <textarea id="textarea" name='tts-text' class="jg form-control rounded-0" rows="5" style="resize: none;"placeholder="음성합성할 텍스트를 입력해주세요" onkeyUp="keyup()"></textarea>
-                        <div style="padding: 20px 0; font-size:.7em;">
-                            <p style="display:inline" id="length-checker">300</p>
-                            <h7 style="">자 남음 (최대 300자)</h7>
-                        </div>
-                        <input type="submit" class="jg button primary active center fit" id="smooth-hover-first" value="음성합성" onclick="loading();"/>
-                    </form>
 
                 </div>
                 <span class="image"><img src="static/images/iu2.jpg" alt="" /></span>
