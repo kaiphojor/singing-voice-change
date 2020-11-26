@@ -23,7 +23,7 @@ def tts():
 @app.route('/create',methods = ['POST'])
 def gettext(display=None):
     if request.method == 'POST':
-        # 이곳이 tts 텍스트가 넘어간 부분
+        #tts 텍스트가 넘어간 부분
         text = request.form['tts-text']
         # 현재 날짜로 저장
         # TODO - 다른 사용자가 동시에 접근한다면?
@@ -38,6 +38,7 @@ def gettext(display=None):
             # 마침표 및 개행 추가하여 저장
             for line in period_separated_lines :
                 file.write(line + '.\n')
+        # 로딩부분을 보여주기 위한 sleep
         # print(text)
         # query
         # time.sleep(2)
@@ -48,17 +49,17 @@ def gettext(display=None):
 def upload_file():
     if request.method == 'POST':
         file = request.files['file']
-        # 경로 + 파일 명
+        # 경로 + 파일 명 - 미완성
         file.save('c:/'+secure_filename(file.filename))
         return 'file upload 성공!'
 
-
+# 안쓰고 참고 하는 부분
 @app.route('/generic')
 def generic():
-    # request.form['']
   return render_template('generic.html')
 @app.route('/elements.html')
 def elements():
   return render_template('elements.html')
+
 if __name__ == '__main__':
     app.run()

@@ -28,12 +28,13 @@
             <div class="spotlight">
                 <div class="content">
                     <header class="major jg">
+                        {# get에서 넘어온 parameter에 따라 다르게 하기#}
                         {% if singer == 'iu' %}
                         <h2 class="jg">Text -> IU</h2>
                         {% elif singer == 'lee-moon-se' %}
                         <h2 class="jg">Text -> 이문세</h2>
                         {% endif %}
-                        {#                        get에서 넘어온 변수에 따라 다르게 하기#}
+
                     </header>
                     <h5 class="jg">텍스트 입력 후 합성버튼을 눌러주세요</h5>
 
@@ -47,6 +48,7 @@
                     </form>
 
                 </div>
+                {# get에서 넘어온 parameter에 따라 다르게 하기#}
                 {% if singer == 'iu' %}
                     <span class="image"><img src="static/images/iu.jpg" alt="" /></span>
                 {% elif singer == 'lee-moon-se' %}
@@ -65,7 +67,7 @@
 <!-- Scripts -->
 <script src="static/js/jquery.min.js"></script>
 <script>
-    // loading page 띄우기
+    // loading page 띄우고 원래 content를 숨긴다
     function loading(){
         $("#loading").show();
         $("#content").hide();
@@ -78,11 +80,10 @@
     function keyup() // keyup함수
     {
         str = document.getElementById("textarea").value;
-        if(str.length > 300) // 문자열의 길이가 80이 넘어갈 경우
+        if(str.length > 300) // 문자열의 길이가 300이 넘어갈 경우
         {
-            //alert("overflow!!!"); // 초과 alert창을 띄운다
             max_text = str.substring(0,300);
-            cleartext(max_text); // 초기화시킨다
+            limit_text(max_text); // 글자수를 제한한다
         }
         else // 그렇지 않을경우 leng(문자열 남은 길이)는 300에서 문자열의 길이를 뺸 것을 계산한다.
         {
@@ -90,7 +91,7 @@
         }
 
     }
-    function cleartext(max_string) // 초기화(텍스트 내용과 남은 길이값을 초기화)
+    function limit_text(max_string) // 글자수 제한(텍스트 내용과 남은 길이값을 300, 0으로 고정)
     {
         document.getElementById("textarea").value = max_string;
         document.getElementById("length-checker").innerText = "0";
