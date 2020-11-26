@@ -14,8 +14,6 @@
 
     <!-- Header -->
     <header id="header" class="alt">
-        {#                        <span class="logo"><img src="https://vinylgif.com/gifs/201412/spinning-7-inch.gif" alt="titlelogo" width="500" /></span>#}
-        {#        <span class="logo"><img src="https://media2.giphy.com/media/LwBTamVefKJxmYwDba/giphy.gif" alt="titlelogo" width="500" /></span>#}
         <span class="logo"><img src="https://i.gifer.com/Z23b.gif" alt="titlelogo" width="500" /></span>
         <h1 class="jg" style = "font-size:6em;">이 노래를 불러줘</h1>
         <p class="jg" style = "font-size:1.7em;">취향 저격 가수의 목소리로 바꿔주는 음악 변환 서비스</p>
@@ -27,7 +25,6 @@
             <li><a href="#intro" class="active jg">서비스 소개</a></li>
             <li><a href="#first" class="jg">가수 음성 변환</a></li>
             <li><a href="#second" class="jg">글자 음성 변환</a></li>
-            {#							<li><a href="#cta">Get Started</a></li>#}
         </ul>
     </nav>
     <!-- Main -->
@@ -59,7 +56,7 @@
                     <a href="generic?singer=lee-moon-se" style="border-bottom: none; position: relative;vertical-align: middle;">
 
                         <span class="image fit scale img">
-                            <img src="static/images/lee-moon-se2.jpg" alt="" />
+                            <img src="static/images/lee-moon-se.jpg" alt="" />
                         </span>
                         <div class="jb-text">
                             <p class="jg">이문세</p>
@@ -67,7 +64,7 @@
                     </a>
                     <a href="generic?singer=iu" style="border-bottom: none; position: relative;vertical-align: middle;">
                         <span class="image fit scale img">
-                            <img src="static/images/iu2.jpg" alt="" />
+                            <img src="static/images/iu.jpg" alt="" />
                         </span>
                         <div class="jb-text">
                             <p class="jg">아이유</p>
@@ -75,11 +72,6 @@
                     </a>
                 </div>
             </div>
-            <footer class="major">
-                <ul class="actions special">
-                    <li><a href="generic.html" class="button">Learn More</a></li>
-                </ul>
-            </footer>
         </section>
 
 
@@ -90,23 +82,46 @@
                 <h2 >음성합성 가수 선택</h2>
             </header>
             <div class="box alt">
+                <form action = "http://localhost:5000/tts" method= "POST">
+                    <div class="row gtr-uniform " id="container">
+                        <a style="border-bottom: none; position: relative;vertical-align: middle;">
+                            <span class="image fit scale img" >
+                                <input type="image" src="static/images/lee-moon-se.jpg" alt="사진" style="border-radius: 8px;">
+                            </span>
+                            <div class="jb-text image1" style="overflow:auto;">
+                                <p class="jg">이문세</p>
+                            </div>
+                            <input type="hidden" value="lee-moon-se" name="singer"/>
+                        </a>
+                        <a style="border-bottom: none; position: relative;vertical-align: middle;">
+                            <span class="image fit scale img">
+                                <input type="image" src="static/images/iu.jpg" alt="사진" style="border-radius: 8px;">
+                            </span>
+                            <div class="jb-text">
+                                <p class="jg">아이유</p>
+                            </div>
+                            <input type="hidden" value="iu" name="singer"/>
+                        </a>
+                    </div>
+                </form>
                 <div class="row gtr-uniform " id="container">
-
                     <a href="tts?singer=lee-moon-se" style="border-bottom: none; position: relative;vertical-align: middle;">
-                        <span class="image fit scale img">
-                            <img src="static/images/lee-moon-se2.jpg" alt="" />
-                        </span>
-                        <div class="jb-text">
+                            <span class="image fit scale img" >
+                                <img src="static/images/lee-moon-se.jpg" alt="사진" style="border-radius: 8px;">
+                            </span>
+                        <div class="jb-text image1" style="overflow:auto;">
                             <p class="jg">이문세</p>
                         </div>
+                        <input type="hidden" value="lee-moon-se" name="singer"/>
                     </a>
-                    <a href="tts?singer=iu" style="border-bottom: none; position: relative;vertical-align: middle;">
-                        <span class="image fit scale img">
-                            <img src="static/images/iu2.jpg" alt="" />
-                        </span>
+                    <a href="tts?singer=iu"  style="border-bottom: none; position: relative;vertical-align: middle;">
+                            <span class="image fit scale img">
+                                <img src="static/images/iu.jpg" alt="사진" style="border-radius: 8px;">
+                            </span>
                         <div class="jb-text">
                             <p class="jg">아이유</p>
                         </div>
+                        <input type="hidden" value="iu" name="singer"/>
                     </a>
                 </div>
             </div>

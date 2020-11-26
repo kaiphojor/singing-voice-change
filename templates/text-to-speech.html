@@ -19,6 +19,7 @@
 
     <!-- Main -->
     <div id="main">
+        <div id="loading"></div>
         <!-- Content -->
         <section id="content" class="main">
             <span class="image main"></span>
@@ -30,14 +31,14 @@
                     </header>
                     <h5 class="jg">텍스트 입력 후 합성버튼을 눌러주세요</h5>
 
-                    <div class="form-group">
-                        <textarea id="textarea" class="jg form-control rounded-0"  rows="5" placeholder="음성합성할 텍스트를 입력해주세요" onkeyUp="keyup()"></textarea>
+                    <form action="/create" class="form-group" method="POST">
+                        <textarea id="textarea" name='tts-text' class="jg form-control rounded-0" rows="5" style="resize: none;"placeholder="음성합성할 텍스트를 입력해주세요" onkeyUp="keyup()"></textarea>
                         <div style="padding: 20px 0; font-size:.7em;">
                             <p style="display:inline" id="length-checker">300</p>
                             <h7 style="">자 남음 (최대 300자)</h7>
                         </div>
-                        <a href="#first" class="jg button primary active center fit" id="smooth-hover-first" >음성 합성</a>
-                    </div>
+                        <input type="submit" class="jg button primary active center fit" id="smooth-hover-first" value="음성합성" onclick="loading();"/>
+                    </form>
 
                 </div>
                 <span class="image"><img src="static/images/iu2.jpg" alt="" /></span>
@@ -53,7 +54,8 @@
 <!-- Scripts -->
 <script src="static/js/jquery.min.js"></script>
 <script>
-    // 입력한 문자
+
+    // 글자수 카운팅 후 바로 업데이트, 글자수 제한
     var str;
     var length
     var str_length_limit = 300
