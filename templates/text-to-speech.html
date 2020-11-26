@@ -19,14 +19,20 @@
 
     <!-- Main -->
     <div id="main">
-        <div id="loading"></div>
+        <div id="loading" style="margin: auto 0px;">
+        </div>
         <!-- Content -->
         <section id="content" class="main">
-            <span class="image main"></span>
+            <span class="image main">
+            </span>
             <div class="spotlight">
                 <div class="content">
                     <header class="major jg">
+                        {% if singer == 'iu' %}
                         <h2 class="jg">Text -> IU</h2>
+                        {% elif singer == 'lee-moon-se' %}
+                        <h2 class="jg">Text -> 이문세</h2>
+                        {% endif %}
                         {#                        get에서 넘어온 변수에 따라 다르게 하기#}
                     </header>
                     <h5 class="jg">텍스트 입력 후 합성버튼을 눌러주세요</h5>
@@ -41,7 +47,12 @@
                     </form>
 
                 </div>
-                <span class="image"><img src="static/images/iu2.jpg" alt="" /></span>
+                {% if singer == 'iu' %}
+                    <span class="image"><img src="static/images/iu.jpg" alt="" /></span>
+                {% elif singer == 'lee-moon-se' %}
+                    <span class="image"><img src="static/images/lee-moon-se.jpg" alt="" /></span>
+                {% endif %}
+
             </div>
         </section>
 

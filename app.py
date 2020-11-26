@@ -2,7 +2,7 @@ from flask import Flask, render_template
 from flask import url_for, redirect
 from flask import g
 from flask import request
-
+import time
 # flask 초기화, 이름을 포함함
 app = Flask(__name__)
 # error 보기위한 용도, debug 용도
@@ -26,6 +26,8 @@ def gettext(display=None):
     if request.method == 'POST':
         text = request.form['tts-text']
         # query
+        time.sleep(2)
+
         return render_template("done.html", display=text)
 
 # @app.route('/tts', methods=['POST'])
