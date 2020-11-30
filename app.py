@@ -26,7 +26,12 @@ def sts():
     if request.method == 'GET':
         singer = request.args.get('singer','iu')
         return render_template('speech-to-speech.html',singer=singer)
-
+@app.route("/sts_rec")
+def move_forward():
+    #Moving forward code
+    forward_message = "Moving Forward..."
+    print(forward_message)
+    return render_template("speech-to-speech.html", message=forward_message);
 # 녹음한 음악 records 폴더에 업로드
 @app.route("/sts_record",methods = ['POST','GET'])
 def record_complete():
@@ -42,6 +47,7 @@ def record_complete():
         return render_template('speech-to-speech.html', request="POST")
     else:
         return render_template("speech-to-speech.html")
+
 
 @app.route('/create',methods = ['POST'])
 def gettext(display=None):
