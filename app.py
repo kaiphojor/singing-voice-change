@@ -9,7 +9,7 @@ from werkzeug.utils import secure_filename
 app = Flask(__name__)
 # error 보기위한 용도, debug 용도
 app.debug = True
-
+import os
 
 @app.route('/',host='index.html')
 def index():
@@ -20,6 +20,29 @@ def tts():
     if request.method == 'GET':
         singer = request.args.get('singer','iu')
         return render_template('text-to-speech.html',singer=singer)
+
+@app.route('/sts',methods = ['GET'])
+def sts():
+    if request.method == 'GET':
+        singer = request.args.get('singer','iu')
+        return render_template('speech-to-speech.html',singer=singer)
+
+# 녹음한 음악 records 폴더에 업로드
+@app.route("/sts_record",methods = ['POST','GET'])
+def record_complete():
+    if request.method == "POST":
+        f = request.files['audio_data']
+        datestring = str(datetime.utcnow().strftime('%Y%m%d_%H%M%S_%f'))
+        urlstring = 'records/' + datestring
+        with open(urlstring +'.wav', 'wb') as audio:
+            f.save(audio)
+        print('file uploaded successfully')
+
+
+        return render_template('speech-to-speech.html', request="POST")
+    else:
+        return render_template("speech-to-speech.html")
+
 @app.route('/create',methods = ['POST'])
 def gettext(display=None):
     if request.method == 'POST':
@@ -57,6 +80,19 @@ def upload_file():
 @app.route('/generic')
 def generic():
   return render_template('generic.html')
+@app.route('/test')
+def test():
+    if request.method == "POST":
+        f = request.files['audio_data']
+        with open('audio.wav', 'wb') as audio:
+            f.save(audio)
+        print('file uploaded successfully')
+
+
+        return render_template('upload_test.html', request="POST")
+    else:
+        return render_template('upload_test.html')
+
 @app.route('/elements.html')
 def elements():
   return render_template('elements.html')

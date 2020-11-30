@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<!--
+	Stellar by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+{% include 'head.html' %}
+<style>
+    #btns{
+        display: none;
+    }
+</style>
+<body class="is-preload">
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+    <!-- Header -->
+    <header id="header">
+        <h1 class="jg" style = "font-size:2em;">음성 합성</h1>
+        <p class="jg" style = "font-size:1em;">텍스트를 가수의 음성으로 변환합니다.</p>
+    </header>
+
+    <!-- Main -->
+    <div id="main">
+        <div id="loading" style="margin: auto 0px;">
+        </div>
+        <!-- Content -->
+        <section id="content" class="main">
+            <span class="image main">
+            </span>
+            <div class="spotlight">
+                <div class="content">
+                    <header class="major jg">
+                        {# get에서 넘어온 parameter에 따라 다르게 하기#}
+                        {% if singer == 'iu' %}
+                            <h2 class="jg">Text -> IU</h2>
+                        {% elif singer == 'lee-moon-se' %}
+                            <h2 class="jg">Text -> 이문세</h2>
+                        {% endif %}
+
+                    </header>
+                    <h5 class="jg">녹음버튼을 누르고 말씀해 주세요</h5>
+                    <img src="static/images/record.png" alt="" style="height: 20%;width: 20%;"/>
+    <h1>Simple Recorder.js demo</h1>
+
+    <div id="controls">
+     <button id="recordButton">Record</button>
+     <button id="pauseButton" disabled>Pause</button>
+     <button id="stopButton" disabled>Stop</button>
+    </div>
+    <div id="formats">Format: start recording to see sample rate</div>
+    <p><strong>Recordings:</strong></p>
+    <ol id="recordingsList"></ol>
+    <!-- inserting these scripts at the end to be able to use all the elements in the DOM -->
+    <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
+    <script src="static/js/record_javascript.js"></script>
+
+
+                </div>
+
+                {# get에서 넘어온 parameter에 따라 다르게 하기#}
+                {% if singer == 'iu' %}
+                    <span class="image"><img src="static/images/iu.jpg" alt="" /></span>
+                {% elif singer == 'lee-moon-se' %}
+                    <span class="image"><img src="static/images/lee-moon-se.jpg" alt="" /></span>
+                {% endif %}
+
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    {% include 'footer.html' %}
+</div>
+<!-- inserting these scripts at the end to be able to use all the elements in the DOM -->
+{#<script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>#}
+{#<script src="static/js/record_javascript.js"></script>#}
+<!-- Scripts -->
+<script src="static/js/jquery.min.js"></script>
+{#<script src="static/js/record-script.js"></script>#}
+<script src="static/js/jquery.scrollex.min.js"></script>
+<script src="static/js/jquery.scrolly.min.js"></script>
+<script src="static/js/browser.min.js"></script>
+<script src="static/js/breakpoints.min.js"></script>
+<script src="static/js/util.js"></script>
+<script src="static/js/main.js"></script>
+
+</body>
+</html>
