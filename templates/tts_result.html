@@ -29,14 +29,18 @@
                         <h2 class="jg">결과창</h2>
                     </header>
                     <h5 class="jg">{{display}}</h5>
-                    <form action="localhost:5000/upload" method="POST" enctype="multipart/form-data">
-                        <input type = "file" name = "file"/>
-                        <input type = "submit"/>
+                    <form action="/download_tts" method="POST" enctype="multipart/form-data">
+                        <input type="hidden" name="file_name" value={{file_name }}>
+                        <input type="submit" value="파일 다운로드" ></form>
                     </form>
 
-
                 </div>
-                <span class="image"><img src="static/images/iu2.jpg" alt="" /></span>
+                {# POST에서 넘어온 가수정보에 따라 이미지 설정#}
+                {% if singer == 'iu' %}
+                    <span class="image"><img src="static/images/iu.jpg" alt="" /></span>
+                {% elif singer == 'lee-moon-se' %}
+                    <span class="image"><img src="static/images/lee-moon-se.jpg" alt="" /></span>
+                {% endif %}
             </div>
         </section>
 

@@ -18,13 +18,13 @@
 
     <!-- Header -->
     <header id="header">
-        <h1 class="jg" style = "font-size:2em;">음성 합성</h1>
-        <p class="jg" style = "font-size:1em;">텍스트를 가수의 음성으로 변환합니다.</p>
+        <h1 class="jg" style = "font-size:2em;">Speech To Speech</h1>
+        <p class="jg" style = "font-size:1em;">녹음한 목소리를 가수의 목소리로 변환합니다.</p>
     </header>
 
     <!-- Main -->
     <div id="main">
-        <div id="loading" style="margin: auto 0px;">
+        <div  style="margin: auto 0px;">
         </div>
         <!-- Content -->
         <section id="content" class="main">
@@ -35,25 +35,20 @@
                     <header class="major jg">
                         {# get에서 넘어온 parameter에 따라 다르게 하기#}
                         {% if singer == 'iu' %}
-                            <h2 class="jg">Text -> IU</h2>
+                            <h2 class="jg">IU</h2>
                         {% elif singer == 'lee-moon-se' %}
-                            <h2 class="jg">Text -> 이문세</h2>
+                            <h2 class="jg">이문세</h2>
                         {% endif %}
 
                     </header>
                     <h5 class="jg">녹음버튼을 누르고 말씀해 주세요</h5>
-
-{#                    <h1>Simple Recorder.js demo</h1>#}
-
+{#                sts_result page로 redirect#}
                     <div id="controls">
-
-                        <img src="static/images/record.png" style="height: 20%;width: 20%;" onclick="window.location.href='{{ url_for( 'move_forward') }}';"></img>
-{#                        <button id="recordButton"><img src="static/images/record.png" alt="record">Record</button>#}
-{#                        <button id="pauseButton" disabled>Pause</button>#}
-{#                        <button id="stopButton" disabled><img src="static/images/record_stop.png" alt="record">Stop</button>#}
+                        <form action="/sts_result" class="form-group" method="POST">
+                            <input type="image" src="static/images/record.png" alt="submit" border="0" style="height: 20%;width: 20%;">
+                            <input type="hidden" name="singer" value={{ singer }}>
+                        </form>
                     </div>
-
-
                 </div>
 
                 {# get에서 넘어온 parameter에 따라 다르게 하기#}
@@ -76,6 +71,9 @@
 {#<script src="static/js/record_javascript.js"></script>#}
 <!-- Scripts -->
 <script src="static/js/jquery.min.js"></script>
+<script>
+
+</script>
 {#<script src="static/js/record-script.js"></script>#}
 <script src="static/js/jquery.scrollex.min.js"></script>
 <script src="static/js/jquery.scrolly.min.js"></script>
