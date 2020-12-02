@@ -44,11 +44,14 @@
 
                     </header>
                     <h5 class="jg">녹음버튼을 누르고 말씀해 주세요</h5>
-{#                sts_result page로 redirect#}
+                    {#                sts_result page로 redirect#}
                     <div id="controls">
-                        <form action="/sts_result" class="form-group" method="POST">
-                            <input type="image" src="static/images/record.png" alt="submit" border="0" style="height: 20%;width: 20%;">
-                            <input type="hidden" name="singer" value={{ singer }}>
+                        <input type="image" id="record-button" src="static/images/record.png" alt="submit" border="0" style="height: 20%;width: 20%;">
+                        <form action="/record" class="form-group" method="POST">
+                            {#                            <input type="image" id="record-button" src="static/images/record.png" alt="submit" border="0" style="height: 20%;width: 20%;" onclick="button_toggle()">#}
+
+                            <input type="hidden" name="singer" id="singer" value={{ singer }}>
+                            <input type="hidden" name="state" id="state" value="ready">
                         </form>
                     </div>
                 </div>
@@ -70,13 +73,37 @@
 </div>
 <!-- inserting these scripts at the end to be able to use all the elements in the DOM -->
 {#<script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>#}
-{#<script src="static/js/record_javascript.js"></script>#}
 <!-- Scripts -->
 <script src="static/js/jquery.min.js"></script>
 <script>
-
+    function button_toggle() {
+        document.getElementById("record-button").src = "static/images/record_stop.png";
+    }
+    // ajax function
+    $('#record-button').click(function(){
+        var state = $('#state').val();
+        var singer = $('#singer').val();
+        var postdata = {
+            'state': state,
+            'singer': singer
+        }
+        $.ajax({
+            type: 'POST',
+            url: '{{url_for("record")}}',
+            data: JSON.stringify(postdata),
+            dataType: 'JSON',
+            contentType: "application/json",
+            success: function (data) {
+                if(state == 'ready'){
+                    document.getElementById("record-button").src = "static/images/record_stop.png";
+                    $('#state').val("recording");
+                }else{
+                    window.location.href = "sts_result?singer="+singer;
+                }
+            },
+        })
+    })
 </script>
-{#<script src="static/js/record-script.js"></script>#}
 <script src="static/js/jquery.scrollex.min.js"></script>
 <script src="static/js/jquery.scrolly.min.js"></script>
 <script src="static/js/browser.min.js"></script>

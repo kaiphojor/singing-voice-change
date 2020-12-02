@@ -149,6 +149,19 @@
             cursor: pointer;
         }
 
+        {#rotating image #}
+        .rotate {
+            animation: rotation 14s infinite linear;
+        }
+
+        @keyframes rotation {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(359deg);
+            }
+        }
 
     </style>
     <meta charset="utf-8" />

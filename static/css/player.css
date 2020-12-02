@@ -3,11 +3,7 @@
     font-family: 'Allerta', arial, Tahoma;
     box-sizing: border-box;
 }
-body {
-    background: linear-gradient(to left, #7700aa, #8800ff);
-    text-align:center;
-    color:#fff;
-}
+
 h3{
     text-shadow:1px 1px 1px #fff;
 }

@@ -42,6 +42,12 @@
                             <h2 class="jg">Speech To Speech 결과</h2>
                         {% endif %}
                         <h5 class="jg">{{display}}</h5>
+{#                        TODO: 결과파일이 나오면 맞춰서 수정#}
+                        <div class="container-audio">
+                            <audio controls autoplay>
+                                <source src="{{ url_for('static', filename=song) }}" type="audio/wav">
+                            </audio>
+                        </div>
                         <form action="/download_tts" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="file_name" value={{file_name }}>
                             <input type="submit" value="파일 다운로드" ></form>

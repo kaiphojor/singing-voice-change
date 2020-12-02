@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, send_file , Response
+from flask import Flask, render_template, request, send_file , Response, jsonify
 from flask import url_for, redirect
 from flask import g
 from flask import session
@@ -19,23 +19,16 @@ import os
 def index():
   return render_template('index.html')
 
-# TODO: 화면 미완성
+
 # singing voice conversion 메뉴
 @app.route('/svc',methods = ['GET'])
 def svc():
     if request.method == 'GET':
+        # 가수 이름 - 앨범커버 교체 위한 변수
         singer = request.args.get('singer', 'iu')
-        # 음악 제목
+        # title - 재생할 파일 불러오기, 제목 설정에 쓰임
         title = request.args.get('title', 'iu')
         return render_template('svc.html', singer=singer,title=title)
-
-# TODO: 화면 미완성
-# singing voice conversion 결과창
-@app.route('/svc_result')
-def svc_result():
-    if request.method == 'GET':
-        singer = request.args.get('singer', 'iu')
-        return render_template('svc_result.html', singer=singer)
 
 # text to speech 메뉴
 @app.route('/tts',methods = ['GET'])
@@ -43,6 +36,7 @@ def tts():
     if request.method == 'GET':
         singer = request.args.get('singer','iu')
         return render_template('tts.html',singer=singer)
+# TODO: 결과파일이 나올때 저장 위치에 따라 수정(S3 / ec2)
 # text to speech 결과 화면
 @app.route('/tts_result',methods = ['POST'])
 def tts_result(display=None):
@@ -52,7 +46,7 @@ def tts_result(display=None):
         # singer 정보 전달
         singer = request.form['singer']
         # 현재 날짜로 저장
-        # TODO - 다른 사용자가 동시에 접근한다면? 나중에 처리
+        # TODO - 다른 사용자가 동시에 접근한다면? 추후 처리
         datestring = str(datetime.utcnow().strftime('%Y%m%d_%H%M%S_%f'))
         file_name = datestring+'.txt'
         # 파일 저장
@@ -65,6 +59,9 @@ def tts_result(display=None):
             for line in period_separated_lines :
                 file.write(line + '.\n')
         # 로딩부분을 보여주기 위한 sleep
+        # TODO: tts 돌리고 나서 결과물의 파일 이름만 file_name에 보내면 될 듯하다
+        # 생성한 파일은 S3에 저장되면 링크만을 가져오면 된다. 아닌 경우에는 static에만 저장해서 불러와야 한다.
+        # TODO: 임시저장은 나중에 구현
         # print(text)
         # query
         # time.sleep(2)
@@ -77,14 +74,16 @@ def sts():
     if request.method == 'GET':
         singer = request.args.get('singer','iu')
         return render_template('sts.html', singer=singer)
+# TODO: 결과파일이 나올때 저장 위치에 따라 수정(S3 / ec2)
 # speech to speech 결과 화면
-@app.route("/sts_result",methods=['POST'])
+@app.route("/sts_result")
 def sts_result():
     #Moving forward code
     # stt 코드 실행
     forward_message = "Moving Forward..."
     # singer 정보 전달
-    singer = request.form['singer']
+    singer = request.values.get('singer')
+
     # print(forward_message)
     # 결과 페이지로 redirect 해야함
     return render_template("sts_result.html", message=forward_message,singer=singer);
@@ -102,27 +101,23 @@ def download_tts():
                          attachment_filename=file_name,
                          as_attachment=True)
 
+# 녹음 버튼 눌렀을 때
+# 버튼을 한번누르면 넘어가는 state값이 ready -> recording으로 바뀐다
+@app.route('/record',methods=['POST'])
+def record():
+    if request.method == 'POST' :
+        data = request.get_json()
+        flag = state = data['state']
+        singer = data['singer']
+        if(flag == 'ready') :
+            # 처음 녹음 버튼 눌렀을 때
 
-# @app.route('/svc_storage/<path:filename>')
-# def download_file(filename):
-#     return send_from_directory('/svc_storage/', filename)
+            return jsonify(result="success", result2=data)
+        else :
+            # 다시 녹음버튼을 눌렀을 때 동작
 
-# # singing voice conversion 음악실행을 위한 routing
-# @app.route('/svc_storage/<path:filename>')
-# def play_svc_wav(filename):
-#     print(filename)
-#     return send_from_directory('/svc_storage/',filename)
+            return jsonify(result="success", result2=data)
 
-# @app.route("/wav/<path:filename>")
-# def streamwav(filename):
-#     def generate():
-#         with open("static/na.wav", "rb") as fwav:
-#             data = fwav.read(1024)
-#             while data:
-#                 yield data
-#                 data = fwav.read(1024)
-#     return Response(generate(), mimetype="audio/x-wav")
-#
 
 # 쓰지 않으나 참고하는 부분
 
