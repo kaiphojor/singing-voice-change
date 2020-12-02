@@ -3,6 +3,8 @@
 	Stellar by HTML5 UP
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+
+	Text to Speech result page
 -->
 <html>
 {% include 'head.html' %}
@@ -66,7 +68,7 @@
     function keyup() // keyup함수
     {
         str = document.getElementById("textarea").value;
-        if(str.length > 300) // 문자열의 길이가 80이 넘어갈 경우
+        if(str.length > 300) // 문자열의 길이가 300이 넘어갈 경우
         {
             //alert("overflow!!!"); // 초과 alert창을 띄운다
             max_text = str.substring(0,300);

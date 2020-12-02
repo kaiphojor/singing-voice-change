@@ -1,0 +1,156 @@
+<!DOCTYPE HTML>
+<!--
+	Stellar by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+
+    Singing Voice Conversion page
+-->
+<html>
+{% include 'head.html' %}
+<link rel="stylesheet" href='static/css/player.css'/>
+<body class="is-preload">
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+    <!-- Header -->
+    <header id="header">
+        <h1 class="jg" style = "font-size:2em;">Singing Voice Conversion</h1>
+        <p class="jg" style = "font-size:1em;">같은 노래를 다른 가수의 목소리로 바꿔줍니다</p>
+    </header>
+
+    <!-- Main -->
+    <div id="main" style="background:none;">
+        {#        <div id="loading"></div>#}
+        <!-- Content -->
+        <section id="content" class="main">
+            <span class="image main"></span>
+
+            <div class="spotlight">
+                <div class="content">
+                    <!-- Called of font style  file -->
+
+                    <link href='https://fonts.googleapis.com/css?family=Allerta' rel='stylesheet'>
+                            {# GET에서 전달된 타이틀에 따라서 음악 배정. static 폴더에 위치한 음악을 가져온다. , TODO:추후 S3에서 링크?#}
+{#                            #}
+                            {% if title == 'iu' %}
+                                {% set song = 'na.wav' %}
+                                {% set title = '나란놈이란???' %}
+                            {% elif title == 'lee-moon-se' %}
+                                <source src="svc_storage/여수밤바다epoch2000.wav" type="audio/wav">
+                            {% endif %}
+
+                    <h2 class="jg" style = "font-size:2em;color:#FFFFFF;">{{ title }}</h2>
+                    <div class="container-audio">
+                        <audio controls autoplay>
+                            <source src="{{ url_for('static', filename=song) }}" type="audio/wav">
+{#                            <source src="/svc_storage/na.wav">#}
+{#                            TODO: 지금은 local file을 link하지만#}
+                            <source src="/static",filename="na.wav" >
+                        </audio>
+                    </div>
+
+                </div>
+                {# GET으로 전달된 가수정보에 따라 이미지 설정#}
+                {% if singer == 'iu' %}
+                    <span class="image"><img src="static/images/iu.jpg" alt="" /></span>
+                {% elif singer == 'lee-moon-se' %}
+                    <span class="image"><img src="static/images/lee-moon-se.jpg" alt="" /></span>
+                {% endif %}
+            </div>
+            <div class="container-audio">
+                <div class="colum1">
+                    <div class="row"></div>
+                </div>
+                <div class="colum1">
+                    <div class="row"></div>
+                </div>
+                <div class="colum1">
+                    <div class="row"></div>
+                </div>
+                <div class="colum1">
+                    <div class="row"></div>
+                </div>
+                <div class="colum1">
+                    <div class="row"></div>
+                </div>
+                <div class="colum1">
+                    <div class="row"></div>
+                </div>
+                <div class="colum1">
+                    <div class="row"></div>
+                </div>
+                <div class="colum1">
+                    <div class="row"></div>
+                </div>
+                <div class="colum1">
+                    <div class="row"></div>
+                </div>
+                <div class="colum1">
+                    <div class="row"></div>
+                </div>
+                <div class="colum1">
+                    <div class="row"></div>
+                </div>
+                <div class="colum1">
+                    <div class="row"></div>
+                </div>
+                <div class="colum1">
+                    <div class="row"></div>
+                </div>
+                <div class="colum1">
+                    <div class="row"></div>
+                </div>
+                <div class="colum1">
+                    <div class="row"></div>
+                </div>
+                <div class="colum1">
+                    <div class="row"></div>
+                </div>
+                <div class="colum1">
+                    <div class="row"></div>
+                </div>
+                <div class="colum1">
+                    <div class="row"></div>
+                </div>
+                <div class="colum1">
+                    <div class="row"></div>
+                </div>
+                <div class="colum1">
+                    <div class="row"></div>
+                </div>
+                <div class="colum1">
+                    <div class="row"></div>
+                </div>
+                <div class="colum1">
+                    <div class="row"></div>
+                </div>
+                <div class="colum1">
+                    <div class="row"></div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    {#    {% include 'footer.html' %}#}
+</div>
+
+<!-- Scripts -->
+<script src="static/js/jquery.min.js"></script>
+<script src="static/js/jquery.scrollex.min.js"></script>
+<script src="static/js/jquery.scrolly.min.js"></script>
+<script src="static/js/browser.min.js"></script>
+<script src="static/js/breakpoints.min.js"></script>
+<script src="static/js/util.js"></script>
+<script src="static/js/main.js"></script>
+
+</body>
+</html>
+                    {#                    <div class="container-audio">#}
+                    {#                        <audio controls  loop autoplay>#}
+                    {#                            <source src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/9473/new_year_dubstep_minimix.ogg" type="audio/ogg">#}
+                    {#                        </audio>#}
+                    {#                    </div>#}

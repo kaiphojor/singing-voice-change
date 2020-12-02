@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, send_file
+from flask import Flask, render_template, request, send_file , Response
 from flask import url_for, redirect
 from flask import g
 from flask import session
@@ -21,11 +21,13 @@ def index():
 
 # TODO: 화면 미완성
 # singing voice conversion 메뉴
-@app.route('/svc')
+@app.route('/svc',methods = ['GET'])
 def svc():
     if request.method == 'GET':
         singer = request.args.get('singer', 'iu')
-        return render_template('svc.html', singer=singer)
+        # 음악 제목
+        title = request.args.get('title', 'iu')
+        return render_template('svc.html', singer=singer,title=title)
 
 # TODO: 화면 미완성
 # singing voice conversion 결과창
@@ -101,9 +103,28 @@ def download_tts():
                          as_attachment=True)
 
 
+# @app.route('/svc_storage/<path:filename>')
+# def download_file(filename):
+#     return send_from_directory('/svc_storage/', filename)
 
+# # singing voice conversion 음악실행을 위한 routing
+# @app.route('/svc_storage/<path:filename>')
+# def play_svc_wav(filename):
+#     print(filename)
+#     return send_from_directory('/svc_storage/',filename)
 
+# @app.route("/wav/<path:filename>")
+# def streamwav(filename):
+#     def generate():
+#         with open("static/na.wav", "rb") as fwav:
+#             data = fwav.read(1024)
+#             while data:
+#                 yield data
+#                 data = fwav.read(1024)
+#     return Response(generate(), mimetype="audio/x-wav")
+#
 
+# 쓰지 않으나 참고하는 부분
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
@@ -112,8 +133,6 @@ def upload_file():
         # 경로 + 파일 명 - 미완성
         file.save('c:/'+secure_filename(file.filename))
         return 'file upload 성공!'
-
-# 쓰지 않으나 참고하는 부분
 @app.route('/generic')
 def generic():
   return render_template('generic.html')
@@ -125,8 +144,6 @@ def test():
         with open('audio.wav', 'wb') as audio:
             f.save(audio)
         print('file uploaded successfully')
-
-
         return render_template('upload_test.html', request="POST")
     else:
         return render_template('upload_test.html')
