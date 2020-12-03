@@ -19,6 +19,34 @@ import os
 def index():
   return render_template('index.html')
 
+# singing voice conversion 음악 선택 메뉴
+@app.route('/svc_select_music',methods = ['GET'])
+def svc_select_music():
+    if request.method == 'GET':
+        # 가수 이름 - 앨범커버 교체 위한 변수
+        singer = request.args.get('singer', 'iu')
+        print('가수 : ' + singer)
+        files = list()
+        files.append(dict(title='파일 이름', singer_list=['iu','lee-moon-se']))
+        files.append(dict(title='파일 이름2',singer_list=['iu','lee-moon-se']))
+        # files = ['asdf','fdzas','sdfew']
+        print(files)
+        for file in files :
+            print(file['title'])
+            print(file['singer_list'])
+        return render_template('svc_select_music.html', singer=singer,files=files)
+
+# singing voice conversion 아티스트 선택 메뉴
+@app.route('/svc_select_artist',methods = ['GET'])
+def svc_select_artist():
+    if request.method == 'GET':
+        # 가수 이름 - 앨범커버 교체 위한 변수
+        singer = request.args.get('singer', 'iu')
+        title = request.args.get('title','default')
+        print('가수 : ' + singer)
+        print('노래제목 : ' + title)
+        return render_template('svc_select_artist.html', singer=singer,title=title)
+
 
 # singing voice conversion 메뉴
 @app.route('/svc',methods = ['GET'])
@@ -96,7 +124,6 @@ def download_tts():
         path = './tts_storage/text/'
         # POST로 전달받은 파일이름을 이용하여 다운로드
         file_name = request.form['file_name']
-            # 'test.txt'
         return send_file(path + file_name,
                          attachment_filename=file_name,
                          as_attachment=True)
@@ -107,10 +134,10 @@ def download_tts():
 def record():
     if request.method == 'POST' :
         data = request.get_json()
-        flag = state = data['state']
+        flag = data['state']
         singer = data['singer']
         if(flag == 'ready') :
-            # 처음 녹음 버튼 눌렀을 때
+            # 처음 녹음 버튼 눌렀을 때 동작
 
             return jsonify(result="success", result2=data)
         else :
