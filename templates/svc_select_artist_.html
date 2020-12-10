@@ -1,0 +1,167 @@
+<!DOCTYPE HTML>
+<!--
+	Stellar by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+
+    Singing Voice Conversion page
+-->
+<html>
+{% include 'head.html' %}
+{% include 'carousel_head.html' %}
+<link rel="stylesheet" href='static/css/player.css'/>
+
+
+<style>
+    body {
+        background: linear-gradient(to left, #ffffff, #8800ff);
+        text-align:center;
+        color:#fff;
+    }
+</style>
+<body class="is-preload">
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+    <!-- Header -->
+    <header id="header">
+        <h1 class="jg" style = "font-size:2em;">Singing Voice Conversion</h1>
+        <p class="jg" style = "font-size:1em;">같은 노래를 다른 가수의 목소리로 바꿔줍니다</p>
+    </header>
+
+    <!-- Main -->
+    <div id="main" style="background:none;">
+        {#        <div id="loading"></div>#}
+        <!-- Content -->
+        <section id="content" class="main">
+            <span class="image main"></span>
+
+            <div class="spotlight">
+                <div class="content">
+                    <!-- Called of font style  file -->
+
+                    <link href='https://fonts.googleapis.com/css?family=Allerta' rel='stylesheet'>
+                    {# GET에서 전달된 타이틀에 따라서 음악 배정. static 폴더에 위치한 음악을 가져온다. , #}
+{#                    {% set song = 'na.wav' %}#}
+                    {#                원본 가수이름 영어 -> 한글#}
+                    {% if singer == 'iu' %}
+                        {% set source_singer = '아이유' %}
+                    {% elif singer == 'jang' %}
+                        {% set source_singer = '장범준' %}
+                    {% elif singer == 'lee-moon-se' %}
+                        {% set source_singer = '이문세' %}
+                    {% elif singer == 'dareun - ga - su ' %}
+                        {% set source_singer = '다른가수' %}
+                    {% endif %}
+
+                    <div class="container" style="width:50%;height:50%;">
+                        {% set singer_title_string = source_singer ~ ' - ' ~ title %}
+                        <h2 class="jg" style = "font-size:2em;color:#FFFFFF;">{{singer_title_string}}</h2>
+                        <h2 class="jg" style = "font-size:2em;color:#FFFFFF;">변환할 가수 선택</h2>
+                        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                            <!-- Indicators -->
+                            <ol class="carousel-indicators">
+                                {#                                TODO : 넘어온 숫자 + 1만큼 li tag 생성 한다#}
+                                {% for target_singer in target_singers %}
+                                    {% set index = loop.index - 1 %}
+                                    {% if loop.index == 1 %}
+                                        <li data-target="#myCarousel" data-slide-to={{ index }} class="active"></li>
+                                    {% else %}
+                                        <li data-target="#myCarousel" data-slide-to={{ index }} ></li>
+                                    {% endif %}
+                                {% endfor %}
+                                <li data-target="#myCarousel" data-slide-to={{ target_singers|length }} ></li>
+                            </ol>
+
+                            <!-- Wrapper for slides -->
+                            <div class="carousel-inner" style="border-radius: 20px;">
+                                {#  TODO : 넘어온 숫자 + 1만큼 carousel item을 생성 한다#}
+                                {% for target_singer in target_singers %}
+                                    {#              변환대상 가수이름 영어 -> 한글#}
+{#                                    carousel에 넣을 이미지 경로 설정#}
+                                    {% if target_singer == 'iu' %}
+                                        {% set target_singer_name = '아이유' %}
+                                        {% set cover_image = "static/images/iu.jpg" %}
+                                    {% elif target_singer == 'jang' %}
+                                        {% set target_singer_name = '장범준' %}
+                                        {% set cover_image = "static/images/jang.jpg" %}
+                                    {% elif target_singer == 'dareun - ga - su ' %}
+                                        {% set target_singer_name = '다른가수' %}
+                                        {% set cover_image = "static/images/jang.jpg" %}
+                                    {% endif %}
+
+                                    {% set index = loop.index - 1 %}
+                                    {% if loop.index == 1 %}
+                                        <div class="item active" style="border-radius: 20px;" >
+                                            <a href="svc?singer={{singer}}&title={{title }}&target_singer={{target_singer}}">
+                                                <img src={{cover_image }} alt="LosAngeles" style="width:100%;border-radius: 20px;">
+                                                <div class="carousel-caption">
+                                                    {#                                                    <h3>Los Angeles</h3>#}
+                                                    <p class="jg">{{ target_singer_name }}</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    {% else %}
+                                        <div class="item" style="border-radius: 20px;">
+                                            <a href="svc?singer={{singer}}&title={{title }}&target_singer={{target_singer}}">
+                                                <img src={{cover_image }} alt="NewYork" style="width:100%;border-radius: 20px;">
+                                                <div class="carousel-caption">
+{#                                                    <h3>Coming Soon</h3>#}
+                                                    <p class="jg">{{ target_singer_name }}</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                                <div class="item" style="border-radius: 20px;">
+                                    <a>
+                                        <img src="static/images/unknown_singer.jpg" alt="New York" style="width:100%;border-radius: 20px;">
+                                        <div class="carousel-caption">
+                                            <h3>Coming Soon</h3>
+                                            <p class="jg">추후 컨텐츠 추가 예정입니다</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- Left and right controls -->
+                            <a class="left carousel-control" href="#myCarousel" data-slide="prev" style="border-radius: 20px;button:0; outline:0;">
+                                <span class="glyphicon glyphicon-chevron-left"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="right carousel-control" href="#myCarousel" data-slide="next" style="border-radius: 20px;button:0; outline:0;">
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    {#    {% include 'footer.html' %}#}
+</div>
+
+<!-- Scripts -->
+<script src="static/js/jquery.min.js"></script>
+<script src="static/js/jquery.scrollex.min.js"></script>
+<script src="static/js/jquery.scrolly.min.js"></script>
+<script src="static/js/browser.min.js"></script>
+<script src="static/js/breakpoints.min.js"></script>
+<script src="static/js/util.js"></script>
+<script src="static/js/main.js"></script>
+
+</body>
+</html>
+{#                    <div class="container-audio">#}
+{#                        <audio controls  loop autoplay>#}
+{#                            <source src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/9473/new_year_dubstep_minimix.ogg" type="audio/ogg">#}
+{#                        </audio>#}
+{#                    </div>#}
+{#                            TODO: 지금은 local file을 link하지만 추후 S3에서 링크?#}

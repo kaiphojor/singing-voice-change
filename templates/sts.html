@@ -21,7 +21,7 @@
     <!-- Header -->
     <header id="header">
         <h1 class="jg" style = "font-size:2em;">Speech To Speech</h1>
-        <p class="jg" style = "font-size:1em;">녹음한 목소리를 가수의 목소리로 변환합니다.</p>
+        <p class="jg" style = "font-size:1em;">녹음한 목소리를 가수의 목소리로 변환합니다</p>
     </header>
 
     <!-- Main -->
@@ -43,7 +43,7 @@
                         {% endif %}
 
                     </header>
-                    <h5 class="jg">녹음버튼을 누르고 말씀해 주세요</h5>
+                    <h5 id= 'status_message' class="jg">녹음버튼을 누르고 말씀해 주세요</h5>
 
                     <div id="controls">
                         <input type="image" id="record-button" src="static/images/control_record_off.png" alt="submit" border="0" style="height: 20%;width: 20%;button:0; outline:0;">
@@ -77,6 +77,8 @@
 
     // ajax function
     $('#record-button').click(function(){
+        document.getElementById("record-button").src = "static/images/singing.gif";
+        document.getElementById("status_message").innerText = "음성변환중입니다."
         var state = $('#state').val();
         var singer = $('#singer').val();
         var postdata = {
@@ -91,10 +93,9 @@
             contentType: "application/json",
             success: function (data) {
                 if(state == 'ready'){
-                    document.getElementById("record-button").src = "static/images/control_record_on.png";
-                    $('#state').val("recording");
-                }else{
                     window.location.href = "sts_result?singer="+singer;
+                }else{
+                    $('#state').val("recording");
                 }
             },
         })

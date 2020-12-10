@@ -35,7 +35,7 @@
 {#                        TODO: 결과파일이 나오면 맞춰서 수정#}
                     <div class="container-audio">
                         <audio controls autoplay>
-                            <source src="{{ url_for('static', filename=song) }}" type="audio/wav">
+                            <source src="{{ url_for('static', filename='tts.wav') }}" type="audio/wav">
                         </audio>
                     </div>
                     <form action="/download_tts" method="POST" enctype="multipart/form-data">

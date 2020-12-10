@@ -15,7 +15,7 @@
     <!-- Header -->
     <header id="header" class="alt">
         <span class="logo"><img src="https://i.gifer.com/Z23b.gif" alt="titlelogo" width="500" /></span>
-        <h1 class="jg" style = "font-size:6em;">Talk To Me</h1>
+        <h1 class="jg" style = "font-size:6em;">너의 목소리가 들려</h1>
         <p class="jg" style = "font-size:1.7em;">취향 저격 가수의 목소리로 바꿔주는 음성 변환 서비스</p>
     </header>
 
@@ -23,9 +23,8 @@
     <nav id="nav">
         <ul>
             <li><a href="#intro" class="active jg">서비스 소개</a></li>
-            <li><a href="#first" class="jg">가수 음성 변환</a></li>
-            <li><a href="#second" class="jg">글자 음성 변환</a></li>
-            <li><a href="#third" class="jg">목소리 변환</a></li>
+            <li><a href="#first" class="jg">서비스 선택</a></li>
+{#            <li><a href="#second" class="jg">다른 메뉴</a></li>#}
         </ul>
     </nav>
     <!-- Main -->
@@ -38,99 +37,29 @@
                         <h2>더 이상 들을게 없다고?<br>직접 만들어 듣자!</h2>
                     </header>
                     <h5>해당 가수가 불러주는 색다른 음악을 접할수 있어요.<br>글을 입력해서 가수가 읽어주는 글을 들을 수도 있어요.<br>목소리를 원하는 대상으로 바꿀수도 있고요.</h5>
-                    <ul class="actions">
-                        <li><a href="#first" class="button active" id="smooth-hover-first" >노랫소리 바꾸기</a></li>
-                        <li><a href="#second" class="button active" id="smooth-hover-second">글자를 음성으로 바꾸기</a></li>
-                        <li><a href="#third" class="button active" id="smooth-hover-third">음성을 바꾸기</a></li>
-                    </ul>
                 </div>
                 <span class="image"><img src="static/images/violet-background.jpg" alt="" /></span>
             </div>
         </section>
 
-        <!-- First Section -->
         <section id="first" class="main special ">
             <header class="major jg">
-                <h2 >Singing Voice Conversion 가수 선택</h2>
+                <h2 >서비스 선택</h2>
             </header>
             <div class="box alt">
-                <div class="row gtr-uniform " id="container">
-                    <a href="svc_select_music?singer=lee-moon-se" style="border-bottom: none; position: relative;vertical-align: middle;">
-
-                        <span class="image fit scale img">
-                            <img src="static/images/lee-moon-se.jpg" alt="" />
+                <div class="row gtr-uniform">
+                    <div class="col-4  jb-wrap" OnClick="location.href ='svc_menu'">
+                        <span class="image fit scale jb-image"><img src="static/images/pic01.jpg" alt="" />
                         </span>
-                        <div class="jb-text">
-                            <p class="jg">이문세</p>
-                        </div>
-                    </a>
-                    <a href="svc_select_music?singer=iu" style="border-bottom: none; position: relative;vertical-align: middle;">
-                        <span class="image fit scale img">
-                            <img src="static/images/iu.jpg" alt="" />
+                    </div>
+                    <div class="col-4  jb-wrap" OnClick="location.href ='tts_menu'">
+                        <span class="image fit scale jb-image"><img src="static/images/pic02.jpg" alt="" />
                         </span>
-                        <div class="jb-text">
-                            <p class="jg">아이유</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-
-
-        <!-- Second Section -->
-        <section id="second" class="main special">
-            <header class="major jg">
-                <h2 >Text To Speech 대상 선택</h2>
-            </header>
-            <div class="box alt">
-                <div class="row gtr-uniform " id="container">
-                    <a href="tts?singer=lee-moon-se" style="border-bottom: none; position: relative;vertical-align: middle;">
-                            <span class="image fit scale img" >
-                                <img src="static/images/lee-moon-se.jpg" alt="사진" style="border-radius: 8px;">
-                            </span>
-                        <div class="jb-text image1" style="overflow:auto;">
-                            <p class="jg">이문세</p>
-                        </div>
-                        <input type="hidden" value="lee-moon-se" name="singer"/>
-                    </a>
-                    <a href="tts?singer=iu"  style="border-bottom: none; position: relative;vertical-align: middle;">
-                            <span class="image fit scale img">
-                                <img src="static/images/iu.jpg" alt="사진" style="border-radius: 8px;">
-                            </span>
-                        <div class="jb-text">
-                            <p class="jg">아이유</p>
-                        </div>
-                        <input type="hidden" value="iu" name="singer"/>
-                    </a>
-                </div>
-            </div>
-        </section>
-        <!-- Third Section -->
-        <section id="third" class="main special">
-            <header class="major jg">
-                <h2 >Speech To Speech 대상 선택</h2>
-            </header>
-            <div class="box alt">
-                <div class="row gtr-uniform " id="container">
-                    <a href="sts?singer=lee-moon-se" style="border-bottom: none; position: relative;vertical-align: middle;">
-                            <span class="image fit scale img" >
-                                <img src="static/images/lee-moon-se.jpg" alt="사진" style="border-radius: 8px;">
-                            </span>
-                        <div class="jb-text image1" style="overflow:auto;">
-                            <p class="jg">이문세</p>
-                        </div>
-                        <input type="hidden" value="lee-moon-se" name="singer"/>
-                    </a>
-                    <a href="sts?singer=iu"  style="border-bottom: none; position: relative;vertical-align: middle;">
-                            <span class="image fit scale img">
-                                <img src="static/images/iu.jpg" alt="사진" style="border-radius: 8px;">
-                            </span>
-                        <div class="jb-text">
-                            <p class="jg">아이유</p>
-                        </div>
-                        <input type="hidden" value="iu" name="singer"/>
-                    </a>
+                    </div>
+                    <div class="col-4  jb-wrap" OnClick="location.href ='sts_menu'">
+                        <span class="image fit scale jb-image"><img src="static/images/pic03.jpg" alt="" />
+                        </span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -142,28 +71,6 @@
 <!-- Scripts -->
 
 <script src="static/js/jquery.min.js"></script>
-<script>
-    //상단 메뉴 클릭시 부드러운 이동
-    $(document).ready(function(){
-        $('#smooth-hover-first').click(function(){
-            var offset = $('#first').offset(); //선택한 태그의 위치를 반환
-            //animate()메서드를 이용해서 선택한 태그의 스크롤 위치를 지정해서 0.8초 동안 부드럽게 해당 위치로 이동함
-            $('html').animate({scrollTop : offset.top}, 800);
-        });
-        $('#smooth-hover-second').click(function(){
-            var offset = $('#second').offset(); //선택한 태그의 위치를 반환
-            //animate()메서드를 이용해서 선택한 태그의 스크롤 위치를 지정해서 1.1초 동안 부드럽게 해당 위치로 이동함
-            $('html').animate({scrollTop : offset.top}, 1100);
-        });
-        $('#smooth-hover-third').click(function(){
-            var offset = $('#third').offset(); //선택한 태그의 위치를 반환
-            //animate()메서드를 이용해서 선택한 태그의 스크롤 위치를 지정해서 1.4초 동안 부드럽게 해당 위치로 이동함
-            $('html').animate({scrollTop : offset.top}, 1400);
-        });
-    });
-
-</script>
-
 <script src="static/js/jquery.scrollex.min.js"></script>
 <script src="static/js/jquery.scrolly.min.js"></script>
 <script src="static/js/browser.min.js"></script>

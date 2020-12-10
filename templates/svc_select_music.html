@@ -22,7 +22,7 @@
 
     <!-- Header -->
     <header id="header">
-        <h1 class="jg" style = "font-size:2em;">Text To Speech</h1>
+        <h1 class="jg" style = "font-size:2em;">Singing Voice Conversion</h1>
         <p class="jg" style = "font-size:1em;">텍스트를 가수의 음성으로 변환합니다.</p>
     </header>
 
@@ -52,40 +52,25 @@
                     </header>
 
                     <h5 class="jg">노래를 선택해 주세요</h5>
-{#                    <table style>#}
-{#                        {% for item in files %}#}
-{#                            <tr>#}
-{#                                <td class="c2">{{item.title}}</td>#}
-{#                                <td class="c5" style="display:none;"><span>{{item.singer_list}}</span></td>#}
-{#                            </tr>#}
-{#                        {% endfor %}#}
-{#                    </table>#}
                     <div class="wrap-table100" style="width:80%; margin: 0 auto;">
                         <div class="table100 ver6">
                             <table data-vertable="ver6" style="border-collapse: collapse; border-spacing: 0">
-{#                                <thead>#}
-{#                                <tr class="row100 head">#}
-                                    {#                                <th class="column100 column1" data-column="column1"></th>#}
-{#                                    <td class="column100 column2" data-column="column2">Sunday</td>#}
-{#                                </tr>#}
-{#                                </thead>#}
                                 <tbody>
-                                {% for item in files %}
-                                    <tr class="row100">
-                                        <td class="column100 column1">{{item.title}}</td>
-                                        <td class="c5" style="display:none;"><span>{{item.singer_list}}</span></td>
-                                    </tr>
+                                {% for song_title in song_list %}
+                                        <tr class="row100 clickable-row" data-href='svc_select_artist?singer={{singer}}&title={{song_title}}'>
+                                            <td class="column100 column1 jg"  >{{song_title}}</td>
+                                        </tr>
                                 {% endfor %}
-{#                                <tr class="row100">#}
-{#                                    <td class="column100 column1" >Lawrence Scott</td>#}
-                                    {#                                    <td class="column100 column2" data-column="column2" style="display:none;">8:00 AM</td>#}
-{#                                </tr>#}
                                 </tbody>
                             </table>
                         </div>
                     </div>
-
-                    <button href="svc_select_artist?singer={{ singer }}">다음으로</button>
+{#                    <form action="/svc_select_artist" class="form-group" method="POST">#}
+{#                        <input type="hidden" id="gameToken" name="singer" value={{ singer }}>#}
+                        {#                        선택한 노래 제목이 title에 담긴다 #}
+{#                        <input type="hidden" id="gameToken" name="title" value={{ singer }}>#}
+{#                        <input type="submit" class="jg button primary active center" id="smooth-hover-first" value="다음으로 넘어가기" style=";float: right;'"/>#}
+{#                    </form>#}
                 </div>
                 {# get에서 넘어온 parameter에 따라 다르게 하기#}
 
@@ -100,9 +85,16 @@
     <!-- Footer -->
     {% include 'footer.html' %}
 </div>
-
 <!-- Scripts -->
 <script src="static/js/jquery.min.js"></script>
+<script>
+    {#  table row click 시 이동 #}
+    jQuery(document).ready(function($) {
+    $(".clickable-row").click(function() {
+        window.location = $(this).data("href");
+    });
+})
+</script>
 <script src="static/js/jquery.scrollex.min.js"></script>
 <script src="static/js/jquery.scrolly.min.js"></script>
 <script src="static/js/browser.min.js"></script>

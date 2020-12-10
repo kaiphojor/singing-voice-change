@@ -39,36 +39,30 @@
                     <!-- Called of font style  file -->
 
                     <link href='https://fonts.googleapis.com/css?family=Allerta' rel='stylesheet'>
-                    {# GET에서 전달된 타이틀에 따라서 음악 배정. static 폴더에 위치한 음악을 가져온다. , #}
-                    {% if title == 'iu' %}
-                        {#                                음악 파일 제목, 음악 제목 설정#}
-                        {% set song = 'na.wav' %}
-                        {% set title = '나란놈이란???' %}
-                    {% elif title == 'lee-moon-se' %}
-                        {% set song = 'na.wav' %}
-                        {% set title = '나란놈이란???' %}
-                    {% elif title == '다른 가수' %}
-                        {% set song = 'na.wav' %}
-                        {% set title = '나란놈이란???' %}
-                    {% elif title == '다른 가수 2' %}
-                        {% set song = 'na.wav' %}
-                        {% set title = '나란놈이란???' %}
-                    {% endif %}
 
-                    <h2 class="jg" style = "font-size:2em;color:#FFFFFF;">{{ title }}</h2>
+{#                    parameter로 전달된 가수이름을 한글로 바꿈#}
+                    {% if target_singer == 'iu' %}
+                        {% set target_singer_name = '아이유' %}
+                    {% elif target_singer == 'jang' %}
+                        {% set target_singer_name = '장범준' %}
+                    {% elif target_singer == 'singer' %}
+                        {% set target_singer_name = '다른가수' %}
+                    {% endif %}
+                    {% set singer_title_string = target_singer_name ~ ' - ' ~ title %}
+
+                    <h2 class="jg" style = "font-size:2em;color:#FFFFFF;">{{ singer_title_string }}</h2>
                     <div class="container-audio">
                         <audio controls autoplay>
-                            <source src="{{ url_for('static', filename=song) }}" type="audio/wav">
+                            <source src="{{ url_for('static', filename=file) }}" type="audio/wav">
 
                         </audio>
                     </div>
-
                 </div>
                 {# GET으로 전달된 가수정보에 따라 이미지 설정#}
-                {% if singer == 'iu' %}
+                {% if target_singer == 'iu' %}
                     <span class="image"><img class="rotate" src="static/images/iu.jpg" alt="" /></span>
-                {% elif singer == 'lee-moon-se' %}
-                    <span class="image"><img class="rotate" src="static/images/lee-moon-se.jpg" alt="" /></span>
+                {% elif target_singer == 'jang' %}
+                    <span class="image"><img class="rotate" src="static/images/jang.jpg" alt="" /></span>
                 {% endif %}
             </div>
             <div class="container-audio">
